@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skyline Cureum · LTI 1.3 Partner Onboarding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F7FA; --panel:#FFFFFF; --ink:#1B2430; --ink-2:#4A5568; --muted:#6B7785;
+  --line:#D9DEE5; --line-strong:#B7C0CB;
+  --blue:#1F5FBF; --blue-soft:#E4ECFA; --amber:#9A6A0E; --amber-soft:#FBF1D9;
+  --green:#22704F; --green-soft:#DEF1E6; --code-bg:#EEF1F5;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1720; --panel:#16202B; --ink:#E8EDF2; --ink-2:#C2CBD6; --muted:#8C98A6;
+    --line:#2A3642; --line-strong:#3B4957;
+    --blue:#7FA8F0; --blue-soft:#1B2C47; --amber:#E2B85C; --amber-soft:#3A2E12;
+    --green:#7BCBA1; --green-soft:#153426; --code-bg:#1E2A36;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1720; --panel:#16202B; --ink:#E8EDF2; --ink-2:#C2CBD6; --muted:#8C98A6;
+  --line:#2A3642; --line-strong:#3B4957;
+  --blue:#7FA8F0; --blue-soft:#1B2C47; --amber:#E2B85C; --amber-soft:#3A2E12;
+  --green:#7BCBA1; --green-soft:#153426; --code-bg:#1E2A36;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+code,pre,.mono{font-family:var(--mono);font-size:.9em}
+code{background:var(--code-bg);padding:.1em .35em;border-radius:3px}
+pre{background:var(--code-bg);padding:14px 16px;border-radius:6px;overflow-x:auto;line-height:1.45}
+pre code{background:none;padding:0}
+h1,h2,h3,h4{line-height:1.2;margin:0 0 .4em;font-weight:600}
+h1{font-size:2rem;letter-spacing:-.01em}
+h2{font-size:1.45rem;margin-top:0}
+h3{font-size:1.1rem;margin-top:1.6em}
+h4{font-size:1rem;margin-top:1.2em;color:var(--ink-2)}
+p{margin:.4em 0 .9em}
+ul,ol{padding-left:1.3em;margin:.3em 0 .9em}
+li{margin:.2em 0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 80px}
+header.top{padding:40px 0 24px;border-bottom:1px solid var(--line)}
+header.top .kicker{color:var(--muted);margin:0 0 6px}
+header.top .lede{max-width:70ch;color:var(--ink-2);font-size:1.05rem;margin:.6em 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:6px 24px;margin-top:14px;color:var(--muted);font-size:.9rem}
+
+/* phase track — the one memorable element */
+.track{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin:28px 0 8px;position:relative}
+.track::before{content:"";position:absolute;left:4%;right:4%;top:18px;height:2px;background:var(--line-strong)}
+.track a{position:relative;text-decoration:none;color:var(--ink);text-align:center;padding-top:44px;font-size:.9rem;line-height:1.25}
+.track a .n{position:absolute;top:0;left:50%;transform:translateX(-50%);width:36px;height:36px;border-radius:50%;background:var(--panel);border:2px solid var(--blue);color:var(--blue);font-weight:600;display:flex;align-items:center;justify-content:center}
+.track a .g{display:block;color:var(--muted);font-size:.8rem;margin-top:2px}
+.track a:hover .n{background:var(--blue);color:#fff}
+@media (max-width:760px){.track{grid-template-columns:repeat(3,1fr);row-gap:22px}.track::before{display:none}}
+
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px;margin-top:32px}
+nav.side{position:sticky;top:16px;align-self:start;font-size:.9rem}
+nav.side ul{list-style:none;padding:0;margin:0}
+nav.side li{margin:0}
+nav.side a{display:block;padding:6px 0 6px 12px;border-left:2px solid var(--line);color:var(--ink-2);text-decoration:none}
+nav.side a:hover{color:var(--ink);border-color:var(--blue)}
+nav.side .grp{margin-top:14px;color:var(--muted);font-size:.8rem;padding-left:12px}
+@media (max-width:900px){.layout{grid-template-columns:1fr;gap:0}nav.side{display:none}}
+main{max-width:800px}
+section{padding:8px 0 28px;border-bottom:1px solid var(--line);margin-bottom:28px}
+section:last-child{border-bottom:0}
+
+.who{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 14px}
+.who div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+.who b{display:block;margin-bottom:4px}
+@media (max-width:620px){.who{grid-template-columns:1fr}}
+
+.gate{border-left:4px solid var(--amber);background:var(--amber-soft);padding:12px 16px;border-radius:0 6px 6px 0;margin:18px 0 6px}
+.gate b{color:var(--amber)}
+.note{border-left:4px solid var(--blue);background:var(--blue-soft);padding:12px 16px;border-radius:0 6px 6px 0;margin:14px 0}
+.ok{border-left:4px solid var(--green);background:var(--green-soft);padding:12px 16px;border-radius:0 6px 6px 0;margin:14px 0}
+
+.tbl{overflow-x:auto;margin:10px 0 16px;border:1px solid var(--line);border-radius:6px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{background:var(--code-bg);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.mono{white-space:nowrap}
+
+.check{list-style:none;padding:0;margin:8px 0 14px}
+.check li{display:flex;gap:10px;align-items:flex-start;padding:5px 0;border-bottom:1px dashed var(--line)}
+.check li:last-child{border-bottom:0}
+.check input{margin-top:5px;accent-color:var(--blue);width:16px;height:16px;flex:0 0 16px}
+.check label{cursor:pointer}
+.owner{color:var(--muted);font-size:.85rem;white-space:nowrap;margin-left:auto;padding-left:12px}
+
+.tier{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0 6px}
+.tier div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-size:.93rem}
+.tier div b{display:block;margin-bottom:6px}
+.tier .req{border-top:3px solid var(--blue)}
+.tier .rec{border-top:3px solid var(--green)}
+.tier .opt{border-top:3px solid var(--line-strong)}
+@media (max-width:700px){.tier{grid-template-columns:1fr}}
+
+.seq{margin:14px 0;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:8px;overflow-x:auto}
+.seq svg{display:block;width:100%;min-width:640px;height:auto}
+details{border:1px solid var(--line);border-radius:6px;padding:8px 14px;margin:10px 0;background:var(--panel)}
+summary{cursor:pointer;font-weight:500}
+.small{font-size:.9rem;color:var(--ink-2)}
+dl{margin:0}
+dt{font-weight:600;margin-top:.6em}
+dd{margin:0 0 .2em 0;color:var(--ink-2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <p class="kicker">Skyline Cureum · Common Good Learning Tools</p>
+  <h1>LTI 1.3 partner onboarding</h1>
+  <p class="lede">How a CPS ed-tech partner connects its product to Cureum so Skyline teachers can open the partner's resources from inside a lesson — with single sign-on, no separate login, and no copy-pasted URLs.</p>
+  <div class="meta">
+    <span>Version 0.1 draft · September 15, 2026</span>
+    <span>Owner: Don LaBonte, Product Manager, CGLT</span>
+    <span>Standard: 1EdTech LTI 1.3 Core + LTI Advantage</span>
+  </div>
+
+  <div class="track" aria-label="Six phases">
+    <a href="#p1"><span class="n">1</span>Intake<span class="g">Week 0–1</span></a>
+    <a href="#p2"><span class="n">2</span>Register<span class="g">Week 1–2</span></a>
+    <a href="#p3"><span class="n">3</span>Connect<span class="g">Week 2–3</span></a>
+    <a href="#p4"><span class="n">4</span>Verify<span class="g">Week 3–4</span></a>
+    <a href="#p5"><span class="n">5</span>Go live<span class="g">Week 4–5</span></a>
+    <a href="#p6"><span class="n">6</span>Support<span class="g">Ongoing</span></a>
+  </div>
+  <p class="small">Each phase ends at a gate. Nothing moves to the next phase until the gate is cleared. Typical elapsed time for a partner that already ships LTI 1.3: four to five weeks.</p>
+</header>
+
+<div class="layout">
+<nav class="side" aria-label="On this page">
+  <ul>
+    <li><a href="#overview">How it works</a></li>
+    <li><a href="#roles">Who does what</a></li>
+    <li><a href="#tiers">Integration tiers</a></li>
+    <li class="grp">Phases</li>
+    <li><a href="#p1">1 · Intake</a></li>
+    <li><a href="#p2">2 · Register</a></li>
+    <li><a href="#p3">3 · Connect</a></li>
+    <li><a href="#p4">4 · Verify</a></li>
+    <li><a href="#p5">5 · Go live</a></li>
+    <li><a href="#p6">6 · Support</a></li>
+    <li class="grp">Appendices</li>
+    <li><a href="#a-intake">A · Intake form</a></li>
+    <li><a href="#a-reg">B · Registration record</a></li>
+    <li><a href="#a-claims">C · Launch claims</a></li>
+    <li><a href="#a-tests">D · Test cases</a></li>
+    <li><a href="#a-trouble">E · Troubleshooting</a></li>
+    <li><a href="#a-jira">F · Jira setup</a></li>
+    <li><a href="#a-refs">G · References</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section id="overview">
+  <h2>How it works</h2>
+  <p>In LTI terms, <b>Cureum is the Platform</b> and the <b>partner product is the Tool</b>. Cureum acts as an OpenID Provider: when a teacher clicks a partner resource inside a Skyline lesson, Cureum signs a JWT that says who the teacher is and which resource was clicked, and hands the browser to the partner. The partner verifies the signature against Cureum's public keys and shows the content.</p>
+  <figure class="seq" role="img" aria-label="LTI launch sequence: teacher clicks a resource in Cureum; Cureum posts a login initiation to the partner; the partner redirects to Cureum's authorization endpoint; Cureum posts a signed id_token to the partner's redirect URI; the partner validates it against Cureum's JWKS; the partner renders the resource to the teacher, signed in.">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="13">
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--ink-2)"/></marker></defs>
+  <!-- lifelines -->
+  <g stroke="var(--line-strong)" stroke-dasharray="4 4"><line x1="120" y1="58" x2="120" y2="385"/><line x1="400" y1="58" x2="400" y2="385"/><line x1="680" y1="58" x2="680" y2="385"/></g>
+  <!-- heads -->
+  <g font-weight="600" fill="var(--ink)" text-anchor="middle">
+    <rect x="40" y="12" width="160" height="46" rx="6" fill="var(--panel)" stroke="var(--line-strong)"/>
+    <text x="120" y="32">Teacher</text><text x="120" y="49" font-weight="400" fill="var(--muted)" font-size="11">in a Skyline lesson</text>
+    <rect x="310" y="12" width="180" height="46" rx="6" fill="var(--blue-soft)" stroke="var(--blue)"/>
+    <text x="400" y="32">Cureum</text><text x="400" y="49" font-weight="400" fill="var(--muted)" font-size="11">Platform · OpenID Provider</text>
+    <rect x="590" y="12" width="180" height="46" rx="6" fill="var(--panel)" stroke="var(--line-strong)"/>
+    <text x="680" y="32">Partner product</text><text x="680" y="49" font-weight="400" fill="var(--muted)" font-size="11">Tool</text>
+  </g>
+  <!-- messages -->
+  <g stroke="var(--ink-2)" stroke-width="1.5" marker-end="url(#arr)">
+    <line x1="120" y1="95" x2="398" y2="95"/>
+    <line x1="400" y1="150" x2="678" y2="150"/>
+    <line x1="680" y1="205" x2="402" y2="205"/>
+    <line x1="400" y1="260" x2="678" y2="260"/>
+    <line x1="680" y1="315" x2="402" y2="315" stroke-dasharray="5 4"/>
+    <line x1="680" y1="365" x2="122" y2="365" stroke-dasharray="5 4"/>
+  </g>
+  <!-- step numbers -->
+  <g fill="var(--blue)" font-weight="600" font-size="11">
+    <circle cx="140" cy="82" r="9" fill="var(--blue)"/><text x="140" y="86" fill="#fff" text-anchor="middle">1</text>
+    <circle cx="420" cy="137" r="9" fill="var(--blue)"/><text x="420" y="141" fill="#fff" text-anchor="middle">2</text>
+    <circle cx="660" cy="192" r="9" fill="var(--blue)"/><text x="660" y="196" fill="#fff" text-anchor="middle">3</text>
+    <circle cx="420" cy="247" r="9" fill="var(--blue)"/><text x="420" y="251" fill="#fff" text-anchor="middle">4</text>
+    <circle cx="660" cy="302" r="9" fill="var(--blue)"/><text x="660" y="306" fill="#fff" text-anchor="middle">5</text>
+    <circle cx="660" cy="352" r="9" fill="var(--blue)"/><text x="660" y="356" fill="#fff" text-anchor="middle">6</text>
+  </g>
+  <!-- labels -->
+  <g fill="var(--ink)">
+    <text x="260" y="86" text-anchor="middle">Clicks a partner resource</text>
+    <text x="540" y="128" text-anchor="middle">POST login initiation</text>
+    <text x="540" y="143" text-anchor="middle" fill="var(--muted)" font-size="11">iss · login_hint · target_link_uri · client_id · lti_deployment_id · lti_message_hint</text>
+    <text x="540" y="183" text-anchor="middle">Redirect to Cureum authorization endpoint</text>
+    <text x="540" y="198" text-anchor="middle" fill="var(--muted)" font-size="11">state · nonce · response_type=id_token</text>
+    <text x="540" y="238" text-anchor="middle">POST id_token to redirect URI</text>
+    <text x="540" y="253" text-anchor="middle" fill="var(--muted)" font-size="11">signed JWT · LtiResourceLinkRequest</text>
+    <text x="540" y="293" text-anchor="middle">Fetch Cureum JWKS (cached), validate</text>
+    <text x="540" y="308" text-anchor="middle" fill="var(--muted)" font-size="11">signature · iss · aud · nonce · exp</text>
+    <text x="400" y="356" text-anchor="middle">Renders the resource, teacher signed in</text>
+  </g>
+</svg>
+</figure>
+  <p>Two things make this different from an ordinary LMS integration:</p>
+  <ul>
+    <li><b>Teacher-first.</b> Cureum is Skyline's learning-object repository. Launches come from teachers and curriculum staff. Student launches happen in Google Classroom, not Cureum, unless a partner and CPS agree otherwise.</li>
+    <li><b>Curation matters more than grading.</b> The most valuable capability is <b>Deep Linking</b>: it lets the Skyline content team pick a specific article, book, or video from the partner's catalog and pin it to a lesson. Grade passback is out of scope for the first cohort.</li>
+  </ul>
+  <div class="note"><b>Assumptions to confirm before the first partner kickoff.</b> This process assumes Cureum exposes a platform-side LTI 1.3 implementation (issuer, OIDC auth endpoint, JWKS, token endpoint, admin screen for tool registrations, and a Deep Linking placement in the lesson editor). Confirm with Pepper which of these exist today, and whether Cureum will support Dynamic Registration. Phase 2 and Appendix B depend on the answers.</div>
+</section>
+
+<section id="roles">
+  <h2>Who does what</h2>
+  <div class="who">
+    <div><b>Partner (Tool)</b>Names a technical contact, a content contact, and a privacy/security contact. Builds and hosts the LTI endpoints. Supplies test accounts and content scope.</div>
+    <div><b>CGLT (Platform)</b>Don runs the process and owns the Jira epic. Pepper owns the Cureum platform implementation. Pepper also reviews the security setup and signs off on Phase 4.</div>
+    <div><b>CPS Skyline team</b>Confirms which partner content belongs in which courses and units. Approves the teacher experience. Places deep-linked resources in lessons.</div>
+    <div><b>CPS Ed Tech office</b>Confirms the partner is in the CPS Ed Tech Catalog with a signed data privacy agreement under SOPPA before any teacher data is sent. Contact: edtech@cps.edu.</div>
+  </div>
+  <p class="small">Meeting cadence: one 30-minute kickoff, one weekly 20-minute check-in per partner while in Phases 2–4, async in Jira otherwise.</p>
+</section>
+
+<section id="tiers">
+  <h2>Integration tiers</h2>
+  <p>Partners declare a tier at intake. Tier 1 is the minimum to go live. Tier 2 is what makes the integration worth doing for Skyline.</p>
+  <div class="tier">
+    <div class="req"><b>Tier 1 · Required</b>LTI 1.3 Core. Teacher launches a resource link (<code>LtiResourceLinkRequest</code>) with SSO. Partner maps returning users by <code>iss</code> + <code>sub</code>, never by name or email.</div>
+    <div class="rec"><b>Tier 2 · Recommended</b>Deep Linking 2.0. Skyline staff open the partner's picker from the Cureum lesson editor, choose content, and the partner returns <code>ltiResourceLink</code> items that Cureum stores in the lesson.</div>
+    <div class="opt"><b>Tier 3 · By agreement</b>Names and Role Provisioning (NRPS) and Assignment and Grade Services (AGS). Only if student launches from Cureum are approved by CPS. Not in scope for the first cohort.</div>
+  </div>
+  <p class="small">All tiers: HTTPS everywhere, RS256-signed JWTs, keys published via JWKS, and the OIDC third-party-initiated login flow from the 1EdTech Security Framework 1.0.</p>
+</section>
+
+<!-- PHASE 1 -->
+<section id="p1">
+  <h2>Phase 1 · Intake <span class="small">(Week 0–1)</span></h2>
+  <p>Goal: decide in one week whether this partner can integrate now, and at which tier.</p>
+  <h3>Steps</h3>
+  <ol>
+    <li>Don sends the intake form (Appendix A) and the link to this page.</li>
+    <li>Partner returns the form within five business days.</li>
+    <li>Don checks the CPS Ed Tech Catalog listing and asks CPS Ed Tech to confirm the SOPPA agreement is current.</li>
+    <li>Kickoff call: agree tier, content scope (courses, grades, units), environments, and target go-live date.</li>
+    <li>Don opens the Jira epic <code>[PARTNER]-LTI</code> (Appendix F) and attaches the completed form.</li>
+  </ol>
+  <h3>First cohort</h3>
+  <div class="tbl"><table>
+    <tr><th>Partner</th><th>Content type on the CPS Digital Resources list</th><th>Likely Skyline fit</th><th>LTI 1.3 status</th></tr>
+    <tr><td>Britannica</td><td>Encyclopedia articles, Spanish option</td><td>ELA, Social Science, Science, WL Spanish</td><td>Has shipped LTI Deep Linking with other platforms; confirm 1.3 details at intake</td></tr>
+    <tr><td>Mackin</td><td>Skyline ebooks</td><td>ELA, Independent Reading</td><td>Confirm at intake</td></tr>
+    <tr><td>PebbleGo</td><td>PreK–3 articles and videos, Spanish option</td><td>K–3 ELA, Science, Social Science</td><td>Confirm at intake</td></tr>
+    <tr><td>TeachingBooks</td><td>Literacy resources for teachers</td><td>ELA, WL</td><td>Confirm at intake</td></tr>
+    <tr><td>Learning Ally</td><td>Audiobooks</td><td>ELA accessibility</td><td>Confirm at intake; student-facing, so Tier 3 questions apply</td></tr>
+  </table></div>
+  <div class="gate"><b>Gate 1 — Go / no-go.</b> Partner supports LTI 1.3 Core (not only 1.1) · listed in the CPS Ed Tech Catalog with a current privacy agreement · tier and content scope agreed · named contacts on both sides.</div>
+</section>
+
+<!-- PHASE 2 -->
+<section id="p2">
+  <h2>Phase 2 · Register <span class="small">(Week 1–2)</span></h2>
+  <p>Goal: exchange the values that make the two systems trust each other. Every value lives in the registration record (Appendix B) attached to the Jira epic. Never send private keys; each side publishes public keys through its own JWKS URL.</p>
+  <h3>What Cureum gives the partner</h3>
+  <div class="tbl"><table>
+    <tr><th>Value</th><th>What it is</th></tr>
+    <tr><td class="mono">Issuer (iss)</td><td>Cureum's platform URL. Fixed for the life of the registration.</td></tr>
+    <tr><td class="mono">Authorization endpoint</td><td>Where the tool sends the OIDC authentication request.</td></tr>
+    <tr><td class="mono">JWKS URL</td><td>Cureum's public keys for verifying <code>id_token</code> signatures. Poll it; keys rotate.</td></tr>
+    <tr><td class="mono">Token endpoint</td><td>OAuth 2 access-token endpoint for services (Tier 2+ only).</td></tr>
+    <tr><td class="mono">client_id</td><td>Issued per tool, per environment. Sandbox and production get different IDs.</td></tr>
+    <tr><td class="mono">deployment_id</td><td>Issued per deployment. The CPS Skyline tenant is one deployment; the partner's sandbox tenant is another.</td></tr>
+    <tr><td class="mono">Platform GUID and name</td><td>Sent in the <code>tool_platform</code> claim so the partner can label the account.</td></tr>
+  </table></div>
+  <h3>What the partner gives Cureum</h3>
+  <div class="tbl"><table>
+    <tr><th>Value</th><th>Notes</th></tr>
+    <tr><td class="mono">OIDC login initiation URL</td><td>Must accept POST and GET; must echo <code>lti_message_hint</code> unaltered.</td></tr>
+    <tr><td class="mono">Redirect URI(s)</td><td>Exact match. List every URI the tool will use, including the deep-linking one.</td></tr>
+    <tr><td class="mono">Target link URI</td><td>Default launch URL for a plain resource link.</td></tr>
+    <tr><td class="mono">Tool JWKS URL</td><td>Public keys Cureum uses to verify deep-linking responses and service tokens.</td></tr>
+    <tr><td class="mono">Deep Linking URL</td><td>Tier 2. Where Cureum sends <code>LtiDeepLinkingRequest</code>.</td></tr>
+    <tr><td class="mono">Custom parameters</td><td>Any static key/value pairs the tool needs on every launch. Substitution variables (<code>$Context.id</code> etc.) only if Cureum confirms support.</td></tr>
+    <tr><td class="mono">Claims required</td><td>Minimum the tool needs to function. Default is <code>sub</code> and roles only; name and email must be justified.</td></tr>
+    <tr><td class="mono">Icon and display name</td><td>What teachers see on the resource card.</td></tr>
+  </table></div>
+  <h3>Two registration paths</h3>
+  <ul>
+    <li><b>Dynamic Registration</b> (if Cureum supports it): Don sends the partner a one-time registration URL; the tool registers itself and Cureum issues the <code>client_id</code>. Fastest and least error-prone.</li>
+    <li><b>Manual</b> (default until confirmed): Don enters the partner's values in the Cureum admin screen; the partner enters Cureum's values in their platform-registration screen. Both sides paste the final values into Appendix B and mark them as verified.</li>
+  </ul>
+  <div class="note">Register production only when Cureum's production issuer is final. The issuer is baked into every launch and every registration, so a domain change (for example, moving to the CPS vanity URL) means re-registering with every partner.</div>
+  <div class="gate"><b>Gate 2 — Registered.</b> Registration record complete for sandbox · both JWKS URLs reachable over HTTPS and return valid keysets · redirect URIs match character-for-character.</div>
+</section>
+
+<!-- PHASE 3 -->
+<section id="p3">
+  <h2>Phase 3 · Connect in sandbox <span class="small">(Week 2–3)</span></h2>
+  <p>Goal: a teacher test account in Cureum UAT launches into the partner's staging environment and lands on content, signed in.</p>
+  <h3>Setup</h3>
+  <ul class="check">
+    <li><input type="checkbox" id="c31"><label for="c31">Cureum UAT tenant has the tool registered and one test lesson with a resource link</label><span class="owner">CGLT</span></li>
+    <li><input type="checkbox" id="c32"><label for="c32">Partner staging tenant accepts launches from the Cureum UAT issuer</label><span class="owner">Partner</span></li>
+    <li><input type="checkbox" id="c33"><label for="c33">Three CGLT test accounts: teacher, content developer, administrator</label><span class="owner">CGLT</span></li>
+    <li><input type="checkbox" id="c34"><label for="c34">Shared debugging channel (Slack Connect or email thread) with both technical contacts</label><span class="owner">Don</span></li>
+  </ul>
+  <h3>Smoke test, in order</h3>
+  <ol>
+    <li><b>Login initiation.</b> Cureum posts to the tool's login URL. Tool redirects to Cureum's authorization endpoint with <code>state</code>, <code>nonce</code>, <code>login_hint</code>, and the unaltered <code>lti_message_hint</code>.</li>
+    <li><b>Launch.</b> Cureum posts the <code>id_token</code> to the redirect URI. Tool validates: signature against Cureum JWKS, <code>iss</code>, <code>aud</code> equals <code>client_id</code>, <code>nonce</code> unused, <code>exp</code>/<code>iat</code> within five minutes.</li>
+    <li><b>Claims.</b> Tool confirms it received every required claim (Appendix C) and ignores any it does not recognize.</li>
+    <li><b>Content.</b> Tool renders the target resource in the placement Cureum requested (<code>launch_presentation.document_target</code>: iframe or window).</li>
+    <li><b>Re-launch.</b> Same teacher launches again; the tool recognizes the account by <code>iss</code> + <code>sub</code> and does not create a duplicate.</li>
+    <li><b>Deep Linking</b> (Tier 2). Content developer opens the picker from the lesson editor; tool returns a signed <code>LtiDeepLinkingResponse</code>; Cureum verifies it against the tool JWKS and stores the <code>ltiResourceLink</code>; the stored link launches correctly.</li>
+  </ol>
+  <p>Use Appendix E when a step fails. Most first-launch failures are one of six known causes.</p>
+  <div class="gate"><b>Gate 3 — Connected.</b> Steps 1–5 pass for all three test accounts · Step 6 passes for Tier 2 partners · no manual URL editing was needed to make it work.</div>
+</section>
+
+<!-- PHASE 4 -->
+<section id="p4">
+  <h2>Phase 4 · Verify <span class="small">(Week 3–4)</span></h2>
+  <p>Goal: prove the integration is correct, safe, and usable before real teachers touch it.</p>
+  <h3>Three reviews, run in parallel</h3>
+  <div class="tbl"><table>
+    <tr><th>Review</th><th>Who</th><th>Evidence</th></tr>
+    <tr><td>Technical acceptance</td><td>Pepper, partner engineer</td><td>Test cases TC-01 to TC-10 (Appendix D) pass in sandbox; results attached to Jira</td></tr>
+    <tr><td>Security and privacy</td><td>Pepper, partner security contact, CPS Ed Tech</td><td>Claims sent match the intake form; no <code>email</code>/<code>name</code> unless justified; TLS on every URL; key rotation tested; data retention matches the CPS privacy agreement</td></tr>
+    <tr><td>Teacher experience</td><td>CPS Skyline team, 2–3 pilot teachers</td><td>Pilot teachers open three deep-linked resources from a real Skyline lesson; observed session using the existing UX research forms; no step required explanation</td></tr>
+  </table></div>
+  <h3>Accessibility</h3>
+  <p>Partner supplies a current VPAT or WCAG 2.1 AA statement for the launched experience. CGLT confirms the launched content is keyboard-reachable from the Cureum lesson page and that iframe launches expose a "open in new window" fallback.</p>
+  <div class="gate"><b>Gate 4 — Accepted.</b> All three reviews signed in Jira by Pepper and the CPS Skyline lead. Partner has confirmed production endpoints are ready.</div>
+</section>
+
+<!-- PHASE 5 -->
+<section id="p5">
+  <h2>Phase 5 · Go live <span class="small">(Week 4–5)</span></h2>
+  <ol>
+    <li><b>Register production.</b> Repeat Phase 2 with production values. New <code>client_id</code> and <code>deployment_id</code>; production keys are never the sandbox keys.</li>
+    <li><b>Production smoke test.</b> One real CPS teacher account (signed in through RapidIdentity SSO) runs TC-01, TC-04, and TC-05 in a hidden lesson.</li>
+    <li><b>Place content.</b> Skyline content team deep-links the agreed resources into units. Lessons stay unpublished until placement is complete.</li>
+    <li><b>Publish and announce.</b> Lessons published; a one-paragraph note added to the Skyline Essentials onboarding materials: what the partner is, what teachers will see, where to get help.</li>
+    <li><b>Watch for five school days.</b> Don reviews launch errors daily with Pepper; partner watches their side. Rollback is a single switch: disable the deployment in Cureum. Resource cards then show "temporarily unavailable" instead of a broken launch.</li>
+  </ol>
+  <div class="gate"><b>Gate 5 — Live.</b> Production launches succeed for five consecutive school days with an error rate under 1% · support paths tested end to end (Phase 6) · epic moved to Done.</div>
+</section>
+
+<!-- PHASE 6 -->
+<section id="p6">
+  <h2>Phase 6 · Support and maintenance <span class="small">(Ongoing)</span></h2>
+  <h3>Where a problem goes</h3>
+  <div class="tbl"><table>
+    <tr><th>Symptom</th><th>First stop</th><th>Then</th></tr>
+    <tr><td>Teacher cannot reach the resource card or Cureum lesson</td><td>CPS ServiceNow ticket or 773-553-3925</td><td>CGLT support@commongoodlt.com</td></tr>
+    <tr><td>Launch starts but fails with an LTI error</td><td>CGLT support@commongoodlt.com</td><td>Partner technical contact via the shared channel</td></tr>
+    <tr><td>Content loads but is wrong, missing, or broken inside the partner product</td><td>Partner support (URL in registration record)</td><td>CPS Skyline team if the placement is wrong</td></tr>
+  </table></div>
+  <h3>Standing rules</h3>
+  <ul>
+    <li><b>Key rotation.</b> Both sides rotate through JWKS with overlapping <code>kid</code>s; the old key stays published for at least 24 hours. No email notice needed.</li>
+    <li><b>Endpoint changes.</b> Changing a login, redirect, deep-linking, or JWKS URL requires 10 business days' notice and a re-run of TC-01 and TC-04 in sandbox first.</li>
+    <li><b>Annual re-verification.</b> Every July, before the school year starts: re-run Appendix D in sandbox, refresh the privacy agreement check, and update contacts.</li>
+    <li><b>Offboarding.</b> Disable the deployment in Cureum, remove resource links from lessons, and confirm the partner has deleted CPS user data per the privacy agreement.</li>
+  </ul>
+</section>
+
+<!-- APPENDICES -->
+<section id="a-intake">
+  <h2>Appendix A · Intake form</h2>
+  <p class="small">Send as a Google Form; keep every field. Answers are the input to Gate 1.</p>
+  <div class="tbl"><table>
+    <tr><th>Field</th><th>Why it's asked</th></tr>
+    <tr><td>Product name, vendor, product URL</td><td>Registration record</td></tr>
+    <tr><td>Technical, content, and privacy contacts (name, email, time zone)</td><td>Escalation matrix</td></tr>
+    <tr><td>LTI version supported: 1.3 / 1.1 only / not yet</td><td>Gate 1. LTI 1.1 is not accepted.</td></tr>
+    <tr><td>1EdTech certification: LTI Advantage certified? Registry link</td><td>Reduces Phase 3–4 effort</td></tr>
+    <tr><td>Services supported: Core, Deep Linking 2.0, NRPS 2.0, AGS 2.0</td><td>Sets the tier</td></tr>
+    <tr><td>Dynamic Registration supported?</td><td>Picks the Phase 2 path</td></tr>
+    <tr><td>Claims required to function (sub only / + name / + email / other)</td><td>Privacy review</td></tr>
+    <tr><td>Launch placement supported: iframe, new window, both</td><td>Lesson-page layout</td></tr>
+    <tr><td>Sandbox/staging environment available? URL and test accounts</td><td>Phase 3</td></tr>
+    <tr><td>CPS Ed Tech Catalog listing and privacy agreement date</td><td>Gate 1</td></tr>
+    <tr><td>Accessibility: VPAT or WCAG statement (link)</td><td>Phase 4</td></tr>
+    <tr><td>Content scope: courses, grade bands, languages, approximate item count</td><td>Kickoff agenda</td></tr>
+    <tr><td>Support URL and hours</td><td>Phase 6</td></tr>
+  </table></div>
+</section>
+
+<section id="a-reg">
+  <h2>Appendix B · Registration record</h2>
+  <p class="small">One copy per environment (sandbox, production). Stored on the Jira epic. Public values only.</p>
+<pre><code>Partner:            ____________________   Environment: sandbox | production
+Tier:               1 | 2 | 3                Registered on: __________ by: __________
+
+CUREUM → PARTNER
+  Issuer (iss)            https://
+  Authorization endpoint  https://
+  JWKS URL                https://
+  Token endpoint          https://
+  client_id
+  deployment_id(s)
+  Platform GUID
+
+PARTNER → CUREUM
+  Login initiation URL    https://
+  Redirect URI(s)         https://
+  Target link URI         https://
+  Tool JWKS URL           https://
+  Deep Linking URL        https://
+  Custom parameters       key=value; ...
+  Claims sent             sub, roles [, given_name, family_name, email — justified: ______]
+  Placement               iframe | window
+  Display name / icon
+
+Verified by CGLT: ______   Verified by partner: ______</code></pre>
+</section>
+
+<section id="a-claims">
+  <h2>Appendix C · What Cureum sends in a launch</h2>
+  <p>A resource-link launch from Cureum is an OpenID <code>id_token</code> carrying these claims. Tools must ignore claims they don't recognize.</p>
+  <div class="tbl"><table>
+    <tr><th>Claim</th><th>Value from Cureum</th><th>Required</th></tr>
+    <tr><td class="mono">iss, aud, sub, exp, iat, nonce, azp</td><td>Standard OIDC. <code>sub</code> is Cureum's stable user ID, never the email.</td><td>Yes</td></tr>
+    <tr><td class="mono">…/claim/message_type</td><td><code>LtiResourceLinkRequest</code> (or <code>LtiDeepLinkingRequest</code>)</td><td>Yes</td></tr>
+    <tr><td class="mono">…/claim/version</td><td><code>1.3.0</code></td><td>Yes</td></tr>
+    <tr><td class="mono">…/claim/deployment_id</td><td>The CPS Skyline deployment</td><td>Yes</td></tr>
+    <tr><td class="mono">…/claim/target_link_uri</td><td>The resource URL from the lesson card</td><td>Yes</td></tr>
+    <tr><td class="mono">…/claim/resource_link</td><td><code>id</code> unique per lesson placement; <code>title</code> = card title</td><td>Yes</td></tr>
+    <tr><td class="mono">…/claim/roles</td><td>See role map below</td><td>Yes</td></tr>
+    <tr><td class="mono">…/claim/context</td><td><code>id</code> = Cureum course; <code>label</code> = course code (e.g. "WL Spanish K"); <code>title</code> = course name; <code>type</code> = CourseOffering</td><td>Sent</td></tr>
+    <tr><td class="mono">…/claim/tool_platform</td><td><code>guid</code>, <code>name</code> "Skyline Cureum", <code>product_family_code</code> "cureum"</td><td>Sent</td></tr>
+    <tr><td class="mono">…/claim/launch_presentation</td><td><code>document_target</code>, <code>return_url</code> back to the lesson, <code>locale</code></td><td>Sent</td></tr>
+    <tr><td class="mono">…/claim/custom</td><td>Static parameters from the registration record</td><td>If registered</td></tr>
+    <tr><td class="mono">given_name, family_name, name, email</td><td>Only if justified at intake and approved in Phase 4</td><td>No</td></tr>
+  </table></div>
+  <h4>Role map</h4>
+  <div class="tbl"><table>
+    <tr><th>Cureum user</th><th>Roles claim (full URIs)</th></tr>
+    <tr><td>Teacher</td><td class="mono">…/lis/v2/membership#Instructor, …/lis/v2/institution/person#Staff</td></tr>
+    <tr><td>Skyline content team</td><td class="mono">…/lis/v2/membership#ContentDeveloper, …/lis/v2/institution/person#Staff</td></tr>
+    <tr><td>CGLT / CPS admin</td><td class="mono">…/lis/v2/membership#Administrator, …/lis/v2/system/person#Administrator</td></tr>
+    <tr><td>Test account</td><td class="mono">Real role + …/lti/system/person#TestUser</td></tr>
+    <tr><td>Student (Tier 3 only)</td><td class="mono">…/lis/v2/membership#Learner, …/lis/v2/institution/person#Student</td></tr>
+  </table></div>
+  <p class="small">Prefix elided: <code>https://purl.imsglobal.org/spec/lti/claim/</code> for claims, <code>http://purl.imsglobal.org/vocab/</code> for roles.</p>
+</section>
+
+<section id="a-tests">
+  <h2>Appendix D · Acceptance test cases</h2>
+  <div class="tbl"><table>
+    <tr><th>ID</th><th>Test</th><th>Pass when</th><th>Tier</th></tr>
+    <tr><td>TC-01</td><td>Teacher launches a resource link from a lesson</td><td>Content shown, no login prompt, correct user identified</td><td>1</td></tr>
+    <tr><td>TC-02</td><td>Launch in iframe and in new window</td><td>Both render; iframe not blocked by X-Frame-Options/CSP</td><td>1</td></tr>
+    <tr><td>TC-03</td><td>Same teacher launches twice, then from a different lesson</td><td>One account on the tool side; no duplicates</td><td>1</td></tr>
+    <tr><td>TC-04</td><td>Content developer deep-links three items</td><td>Signed response verified; three cards appear in the lesson with titles</td><td>2</td></tr>
+    <tr><td>TC-05</td><td>Teacher launches a deep-linked item</td><td>Lands on exactly that item</td><td>2</td></tr>
+    <tr><td>TC-06</td><td>Tool returns to Cureum with <code>lti_errormsg</code></td><td>Teacher sees the message on the lesson page, not a blank frame</td><td>1</td></tr>
+    <tr><td>TC-07</td><td>Administrator and content-developer launches</td><td>Tool grants the expected permissions per role</td><td>1</td></tr>
+    <tr><td>TC-08</td><td>Cureum rotates its signing key</td><td>Launches keep working within the JWKS cache window; no outage</td><td>1</td></tr>
+    <tr><td>TC-09</td><td>Replay a captured <code>id_token</code></td><td>Rejected (nonce reuse / expired)</td><td>1</td></tr>
+    <tr><td>TC-10</td><td>Claims audit</td><td>Tool logs show only the claims agreed at intake were stored</td><td>1</td></tr>
+  </table></div>
+  <p class="small">Partners that are 1EdTech LTI Advantage certified may attach their certification report in place of TC-01, TC-03, TC-08, and TC-09.</p>
+</section>
+
+<section id="a-trouble">
+  <h2>Appendix E · Troubleshooting first launches</h2>
+  <dl>
+    <dt>"Invalid redirect URI" or tool never receives the id_token</dt><dd>Redirect URI mismatch, usually a trailing slash or http vs https. Compare character by character against Appendix B.</dd>
+    <dt>"Invalid signature" / "key not found"</dt><dd>Tool cached an old JWKS or Cureum's <code>kid</code> changed. Tool should refetch JWKS on unknown <code>kid</code>. Check the JWKS URL returns <code>Content-Type: application/json</code>.</dd>
+    <dt>"Token expired" on a fresh launch</dt><dd>Clock skew. Both servers on NTP; tolerate up to 60 seconds.</dd>
+    <dt>Launch works in a new window but shows blank in the iframe</dt><dd>Third-party cookie blocking. Tool session cookies need <code>SameSite=None; Secure</code>; if the browser still blocks, tool should fall back to a "Open in new window" button rather than an empty frame.</dd>
+    <dt>"Missing lti_message_hint" or wrong resource launched</dt><dd>Tool altered or dropped <code>lti_message_hint</code> or <code>login_hint</code> in the authentication request. They must pass through unchanged.</dd>
+    <dt>Tool creates a new user every launch</dt><dd>Tool is keying on <code>email</code> or <code>name</code>. Key on <code>iss</code> + <code>sub</code> (plus <code>deployment_id</code> for the account).</dd>
+    <dt>Deep-linking response rejected by Cureum</dt><dd>Response JWT must be signed with the tool's private key (verifiable via the tool JWKS), carry <code>aud</code> = Cureum issuer, <code>iss</code> = client_id, and echo the <code>deep_link_return_url</code> and <code>data</code> from the request.</dd>
+    <dt>Roles not recognized</dt><dd>Tool expects short names ("Instructor"). Cureum sends full URIs per the spec; the tool must accept them.</dd>
+  </dl>
+</section>
+
+<section id="a-jira">
+  <h2>Appendix F · Jira setup</h2>
+  <p>One epic per partner: <code>[PARTNER]-LTI</code>, in the same project as the Skyline content-onboarding epics. Six stories mirror the phases; each story's acceptance criteria are that phase's gate, copied verbatim. Attach the intake form to Story 1 and the registration record to Story 2.</p>
+  <div class="tbl"><table>
+    <tr><th>Story</th><th>Owner</th><th>Done when</th></tr>
+    <tr><td>1 · Intake and go/no-go</td><td>Don</td><td>Gate 1</td></tr>
+    <tr><td>2 · Sandbox registration</td><td>Don + partner engineer</td><td>Gate 2</td></tr>
+    <tr><td>3 · Sandbox connection</td><td>Pepper + partner engineer</td><td>Gate 3</td></tr>
+    <tr><td>4 · Verification</td><td>Pepper (security), CPS Skyline (UX)</td><td>Gate 4</td></tr>
+    <tr><td>5 · Production go-live</td><td>Don</td><td>Gate 5</td></tr>
+    <tr><td>6 · Support handoff</td><td>Don</td><td>Escalation table confirmed by all three parties</td></tr>
+  </table></div>
+  <p class="small">Custom field <code>Tier</code> (1/2/3) and label <code>lti-partner</code> so the WL dashboard can roll partners up separately from content migration.</p>
+</section>
+
+<section id="a-refs">
+  <h2>Appendix G · References</h2>
+  <ul>
+    <li><a href="https://www.imsglobal.org/spec/lti/v1p3">LTI 1.3 Core specification</a> — messages, claims, roles, deployment model</li>
+    <li><a href="https://www.imsglobal.org/spec/security/v1p0/">1EdTech Security Framework 1.0</a> — OIDC login flow, JWT signing, access tokens</li>
+    <li><a href="https://www.imsglobal.org/spec/lti-dl/v2p0">LTI Deep Linking 2.0</a> — content picker request/response</li>
+    <li><a href="https://www.imsglobal.org/spec/lti-dr/v1p0">LTI Dynamic Registration 1.0</a></li>
+    <li><a href="https://www.imsglobal.org/spec/lti-nrps/v2p0">NRPS 2.0</a> and <a href="https://www.imsglobal.org/spec/lti-ags/v2p0/">AGS 2.0</a> — Tier 3 only</li>
+    <li><a href="https://www.imsglobal.org/spec/lti/v1p3/impl">LTI Advantage Implementation Guide</a> and <a href="https://www.imsglobal.org/spec/lti/v1p3/cert">Conformance Certification Guide</a></li>
+    <li><a href="https://www.cps.edu/sites/skyline/supplemental-resources/#CPSDigitalResources">CPS Skyline supplemental resources</a> — first-cohort partner list</li>
+    <li><a href="https://www.cps.edu/about/policies/student-online-personal-protection-act/">CPS SOPPA policy</a> and <a href="https://insight.lightspeedsystems.app/public-applications/#/4c82ad9f085742b4a565fa40f1eadbe7">CPS Ed Tech Catalog</a></li>
+  </ul>
+</section>
+
+</main>
+</div>
+</div>
+<script>
+// Persist checklist state per viewer; safe if storage is unavailable.
+(function(){
+  var boxes=document.querySelectorAll('.check input[type=checkbox]');
+  boxes.forEach(function(b){
+    try{ if(localStorage.getItem('lti-onboard-'+b.id)==='1') b.checked=true; }catch(e){}
+    b.addEventListener('change',function(){
+      try{ localStorage.setItem('lti-onboard-'+b.id, b.checked?'1':'0'); }catch(e){}
+    });
+  });
+})();
+</script>
+</body>
+</html>
